@@ -1,16 +1,38 @@
 import React, { useState } from 'react';
-import Assets from '../db.json'; // Assuming db.json is in the same directory as your component
+import Assets from '../db.json';
+
+
+
+
 
 const AllAssets = () => {
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [searchInput, setSearchInput] = useState('');
   
-    const toggleDropdown = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [filterId, setFilterId] = useState(null);
+
+  const toggleDropdown = () => {
       setShowDropdown(!showDropdown);
-    };
+  };
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+  const handleFilter = (id) => {
+      setFilterId(id === 'all' ? null : id);
+  };
+
+  const filteredAssets = filterId
+      ? Assets.assets.filter(asset => asset['genre-id'] === filterId)
+      : Assets.assets;
     
+      const searchedAssets = searchInput.trim().length > 0
+      ? filteredAssets.filter(asset =>
+          asset.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+          asset.creator.toLowerCase().includes(searchInput.toLowerCase())
+      )
+      : filteredAssets;
     return (
-        <section className=" bg-black p-8 all">
+        <section className=" bg-black p-2 all">
 
 <section className="hero grid grid-cols-1 gap-2 p-4 text-center">
       <div className="flex justify-between mb-10">
@@ -29,19 +51,22 @@ const AllAssets = () => {
             {showDropdown && (
               <div className="absolute mx-5 z-10 mt-12 bg-gray-400 rounded-md shadow-lg">
                 <div className="" role="menu" aria-orientation="vertical" aria-labelledby="filterBtn">
-                  <a href="#" id='2' className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                <a href="#" onClick={() => handleFilter('all')} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                            All
+                        </a>
+                  <a href="#" id='2' onClick={() => setFilterId(2)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
                     NFTs
                   </a>
-                  <a href="#" id='1' className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                  <a href="#" id='1' onClick={() => setFilterId(1)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
                    Photography
                   </a>
-                  <a href="#" id='0' className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                  <a href="#" id='0' onClick={() => setFilterId(0)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
                    Digital Arts
                   </a>
-                  <a href="#" id='3' className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                  <a href="#" id='3' onClick={() => setFilterId(3)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
                     Logo
                   </a>
-                  <a href="#" id='2' className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+                  <a href="#" id='4' onClick={() => setFilterId(4)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
                     3d Arts
                   </a>
                   {/* Other menu items */}
@@ -51,13 +76,13 @@ const AllAssets = () => {
 
             {/* Search bar */}
             <div className="relative mx-auto max-w-md">
-              <input
-                type="text"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                className="block w-full py-2 px-4 rounded-md bg-black border border-gray-300 focus:outline-none focus:border-blue-500"
-                placeholder="Search..."
-              />
+                <input
+                    type="text"
+                    value={searchInput}
+                    onChange={handleSearch}
+                    className="block w-full py-2 px-4 rounded-md bg-black border border-gray-300 focus:outline-none focus:border-blue-500"
+                    placeholder="Search..."
+                />
             </div>
           </div>
         </div>
@@ -68,10 +93,10 @@ const AllAssets = () => {
       </h1>
     </section>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2 lg:p-4">
-                {Assets.assets.map(asset => (
-                    <a key={asset.id} href="#">
-                        <div className="asset-card bg-gray-600 text-white lg:p-5 p-3 rounded-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:p-4">
+            {searchedAssets.map(asset => (
+                     <a key={asset.id} href={`/details/${asset.id}`} className="asset-link">
+                        <div className="asset-card bg-zinc-600 text-white lg:p-5 p-2 rounded-lg">
                             <div className="flex mb-2 justify-between">
                                 <div className="flex">
                                     <img src={asset['creator-image']} className="imge" alt="Creator" />
@@ -86,12 +111,16 @@ const AllAssets = () => {
                                 </div>
                             </div>
                             <div className="justify-center">
-                                <img src={asset['asset-image']} alt="Asset" id={asset.id} className="rounded-lg w-full h-full md:h-80 lg:h-72" />
+                                <img src={asset['asset-image']} alt="Asset" id={asset.id} className="rounded-lg w-full h-80  lg:h-96" />
                             </div>
                             <h1 className="font-bold text-2xl">{asset.title}</h1>
-                            <div className="flex justify-between">
+                            <div className="grid">
                                 <p className="text-gray-400">current bids: {asset.bids} ETH</p>
-                                <p className="bg-blue-400 rounded-lg px-0.5">{asset.genre}</p>
+                                <div className="flex justify-end"> {/* Position at right side */}
+                            <div >
+                                <p className="text-center bg-teal-500 w-20 mt-2 rounded-lg px-0.5">{asset.genre}</p>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </a>

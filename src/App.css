@@ -45,7 +45,7 @@
 
 .scrollers .h1{
   position: relative;
-  margin-top: -300px;
+  margin-top: -200px;
   z-index: 1000;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 600;
@@ -56,14 +56,14 @@
       white-space: nowrap;
       transition: transform 0.3s ease;
       scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      -ms-overflow-style: none; 
   }
 
   /* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
   .image-scroller::-webkit-scrollbar {
       display: none;
   }
-
+ 
   /* Adjust the size and spacing of each image container */
   .image-scroller .image-container {
       position: relative;
@@ -133,7 +133,6 @@ transform: scaleX(-1);
   width: 100%;
   height: 110vh;
   
-  
 }
 
 .swiper-slide {
@@ -144,17 +143,16 @@ transform: scaleX(-1);
   align-items: center;
   background-size: cover;
   background-position: center;
+  object-fit: contain;
+  height: auto;
   
   
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: auto;
   object-fit: cover;
-  object-position: center;
-  
 
 }
 .contain{
@@ -164,6 +162,7 @@ transform: scaleX(-1);
   display: flex;
   align-items: left;
   background: rgb(2, 3, 7, 0.4);
+  
 
 }
 .contain img{
@@ -308,11 +307,11 @@ filter: blur(100px);
 }
 
 .neon-background::before {
-left: -50vw;
+left: -57vw;
 }
 
 .neon-background::after {
-right: -50vw;
+right: -57vw;
 }
 
 .content {
@@ -564,4 +563,60 @@ font-weight: 600;
   font-size: 4rem;
   color: #0ff;
 text-shadow: 0 0 10px #6afdff,  0 0 30px #56fff1, 0 0 70px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
+}
+
+/**discover scroller styles**/
+.scroller {
+  max-width: 100%;
+}
+
+.scroller[data-animated=true] {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 90%,
+      transparent);
+  mask: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255, 255, 255) 20%,
+      white 90%,
+      transparent);
+}
+
+.scroller[data-animated=true] .scroller_inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 30s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+
+.scroller[animation-duration="slow"] {
+  --_animation-duration: 40s;
+}
+
+.scroller[animation-duration="fast"] {
+  --_animation-duration: 10s;
+}
+
+@keyframes scroll {
+  to {
+      transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.scroller_inner {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1rem;
+  flex-wrap: wrap;
 }

@@ -54,10 +54,11 @@ const Header = () => {
           </svg>
         </button>
         <ul className="py-4 pt-10">
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/">Home</a></li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/home">Home</a></li>
           <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/about">About Us</a></li>
           <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/contact">Contact Us</a></li>
           <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/allAssets">All Assets</a></li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/assetsid">Assets</a></li>
           {/* Add more menu items */}
         </ul>
       </div>

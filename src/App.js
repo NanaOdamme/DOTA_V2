@@ -7,17 +7,19 @@ import Home from './components/Home.js';
 import About from './components/About.js';
 import Contact from './components/Contact.js';
 import AllAssets from './components/AllAssets.js';
+import AssetDetailsPage from './components/AssetDetailsPage'; 
 
 function App() {
   return (
     <Router>
-      <div >
+      <div className='bg-black'>
         <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/allAssets" component={AllAssets} />
+          <Route path="/details/:id" component={AssetDetailsPage} />
           
         </Switch>
         <Footer />
