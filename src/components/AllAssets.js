@@ -51,24 +51,25 @@ const AllAssets = () => {
             {showDropdown && (
               <div className="absolute mx-5 z-10 mt-12 bg-gray-400 rounded-md shadow-lg">
                 <div className="" role="menu" aria-orientation="vertical" aria-labelledby="filterBtn">
-                <a href="#" onClick={() => handleFilter('all')} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                            All
-                        </a>
-                  <a href="#" id='2' onClick={() => setFilterId(2)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                    NFTs
-                  </a>
-                  <a href="#" id='1' onClick={() => setFilterId(1)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                   Photography
-                  </a>
-                  <a href="#" id='0' onClick={() => setFilterId(0)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                   Digital Arts
-                  </a>
-                  <a href="#" id='3' onClick={() => setFilterId(3)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                    Logo
-                  </a>
-                  <a href="#" id='4' onClick={() => setFilterId(4)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
-                    3d Arts
-                  </a>
+                <button type="button" onClick={() => handleFilter('all')} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  All
+</button>
+<button type="button" id='2' onClick={() => setFilterId(2)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  NFTs
+</button>
+<button type="button" id='1' onClick={() => setFilterId(1)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  Photography
+</button>
+<button type="button" id='0' onClick={() => setFilterId(0)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  Digital Arts
+</button>
+<button type="button" id='3' onClick={() => setFilterId(3)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  Logo
+</button>
+<button type="button" id='4' onClick={() => setFilterId(4)} className="block px-4 py-2 text-white hover:bg-gray-800" role="menuitem">
+  3d Arts
+</button>
+
                   {/* Other menu items */}
                 </div>
               </div>
@@ -95,7 +96,8 @@ const AllAssets = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:p-4">
             {searchedAssets.map(asset => (
-                     <a key={asset.id} href={`/details/${asset.id}`} className="asset-link">
+                    <button key={asset.id} onClick={() => window.location.href = `/details/${asset.id}`} className="asset-link">
+
                         <div className="asset-card bg-zinc-600 text-white lg:p-5 p-2 rounded-lg">
                             <div className="flex mb-2 justify-between">
                                 <div className="flex">
@@ -123,12 +125,12 @@ const AllAssets = () => {
                         </div>
                             </div>
                         </div>
-                    </a>
+                    </button>
                 ))}
             </div>
             <div className="mx-2 flex justify-between text-white">
                 <h4 className="text-blue-400">Subscribe to our newsletter below to get updated on assets and bids</h4>
-                <a href="#" className="hover:bg-blue-400 px-4 border border-2 border-white rounded-full">Load More</a>
+                <button  className="hover:bg-blue-400 px-4 border border-2 border-white rounded-full">Load More</button>
             </div>
 
         </section>

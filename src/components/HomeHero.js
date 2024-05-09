@@ -27,7 +27,8 @@ export default function App() {
       >
         {filteredAssets.map((asset) => (
           <SwiperSlide key={asset.id} className="swiper-slide contain">
-            <a key={asset.id} href={`/details/${asset.id}`} className="asset-link">
+            <button key={asset.id} onClick={() => window.location.href = `/details/${asset.id}`} className="asset-link">
+
             <img
               src={asset['asset-image']}
               alt={asset.title}
@@ -36,24 +37,24 @@ export default function App() {
             <div className="hometext lg:pt-80">
               <span className="font-bold mx-4 text-2xl">{asset.title}</span>
               <div className="flex mt-10">
-                <a
-                  href="#"
+                <button
+                  
                   className="mx-4 bg-gray-600 rounded bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md"
                 >
                   Buy
-                </a>
-                <a
-                  href="#"
+                </button>
+                <button
+                  
                   className="mx-4 bg-gray-600 rounded bg-opacity-80 hover:bg-opacity-75 hover:bg-yellow-100 text-white font-bold py-1 px-4 shadow-md"
                 >
                   Add to list <i className="bi bi-plus-circle"></i>
-                </a>
+                </button>
               </div>
               <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mx-4 overflow-hidden">
                 {asset.info}
               </p>
             </div>
-            </a>
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>

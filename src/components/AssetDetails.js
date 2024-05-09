@@ -96,16 +96,16 @@ const AssetDetails = ({ asset }) => {
               alt="assetid"
             />
             <div className="py-4 px-4 lg:px-20">
-              <a href="#" className="border border-2 border-white py-1 px-4 rounded-full">
+              <button className="border border-2 border-white py-1 px-4 rounded-full">
               <i class="bi bi-heart mx-2"></i>
                 {asset.likes}
-              </a>
-              <a href="#" className="border border-2 border-white py-1 px-4 rounded-full mx-5">
+              </button>
+              <button className="border border-2 border-white py-1 px-4 rounded-full mx-5">
               <i class="bi bi-eye mx-2 "></i>
                 {asset.watched}
-              </a>
+              </button>
               <h4 className="mt-4">Creator</h4>
-              <a href="#">
+              <button>
                 <div className="flex">
                   <img
                     src={asset['creator-image']}
@@ -116,7 +116,7 @@ const AssetDetails = ({ asset }) => {
                     {asset.creator}
                   </h2>
                 </div>
-              </a>
+              </button>
               <h1 className="mt-5 mb-2 lg:text-5xl md:text-3xl text-2xl">
                 {asset.title}
               </h1>
@@ -140,20 +140,18 @@ const AssetDetails = ({ asset }) => {
                 </div>
               </div>
               <div className="mt-10"></div>
-              <a
-                href="#"
+              <button
                 style={{ backgroundColor: 'rgb(255, 0, 221)', fontWeight: 700 }}
                 className="py-2 px-6 text-white rounded-full"
               >
                 Buy This
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
                 style={{ backgroundColor: 'rgb(255, 0, 221)', fontWeight: 700 }}
                 className="mx-5 py-2 px-10 text-white rounded-full ml-2"
               >
                 Bid
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -162,22 +160,24 @@ const AssetDetails = ({ asset }) => {
       <h1 className="mx-4 text-blue-400">Explore</h1>
       <div className="flex justify-between">
         <h1 className="mx-4 mb-10 text-white text-2xl">Explore More Assets</h1>
-        <a href="/allAssets" className="mx-4 text-white">
-          View All<i className="mx-6 bi bi-arrow-right"></i>
-        </a>
+        <button type="button" onClick={() => window.location.href = "/allAssets"} className="mx-4 text-white">
+  View All <i className="mx-6 bi bi-arrow-right"></i>
+</button>
+
       </div>
       <div className="wrapper">
         <ul className="carousel">
           {Assets.assets.map((asset) => (
-            <a href={`/details/${asset.id}`} key={asset.id}>
+            <button key={asset.id} onClick={() => window.location.href = `/details/${asset.id}`} className="asset-list">
               <li className="card">
                 <div className="flex mx-2 auction">
                   <div className="p-4 main-card max-w-xs bg-white rounded-lg shadow-md overflow-hidden">
-                    <img
-                      className="object-cover object-center rounded-lg"
-                      src={asset['asset-image']}
-                      alt="Card Image"
+                  <img
+                    className="object-cover object-center rounded-lg"
+                    src={asset['asset-image']}
+                      alt="Card"
                     />
+
                     <h2 className="text-xl font-bold mx-2 mt-5 mb-3">{asset.title}</h2>
                     <div className="flex">
                       <img src={asset['creator-image']} className="imge" alt="" />
@@ -190,7 +190,7 @@ const AssetDetails = ({ asset }) => {
                   </div>
                 </div>
               </li>
-            </a>
+            </button>
             
           ))}
         </ul>

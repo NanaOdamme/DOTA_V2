@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -35,7 +36,7 @@ const Header = () => {
             search
           </button>
           <button className="hover:text-orange-400 transition duration-300 text-red-500  px-6    font-bold">
-            <a href="">Sign in</a>
+            Sign In
           </button>
         </div>
       </nav>
@@ -54,11 +55,19 @@ const Header = () => {
           </svg>
         </button>
         <ul className="py-4 pt-10">
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/home">Home</a></li>
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/about">About Us</a></li>
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/contact">Contact Us</a></li>
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/allAssets">All Assets</a></li>
-          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300"><a href="/assetsid">Assets</a></li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300">
+            <button onClick={() => window.location.href = "/home"}>Home</button>
+          </li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300">
+          <button onClick={() => window.location.href = "/about"}>About Us</button>
+            </li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300">
+          <button onClick={() => window.location.href = "/contact"}>Contact Us</button>
+            </li>
+          <li className="px-4 py-2 hover:bg-orange-100 transition duration-300">
+          <button onClick={() => window.location.href = "/allAssets"}>All Assets</button>
+            </li>
+        
           {/* Add more menu items */}
         </ul>
       </div>
